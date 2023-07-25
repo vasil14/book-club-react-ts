@@ -1,10 +1,30 @@
-import Navbar from "../components/navbar/Navbar"
+import axios from "axios";
+import { useEffect, useState } from "react";
 
-
-const Home = () => {
-  return (
-    <Navbar/>
-  )
+interface BookAttributes {
+  id: number;
+  title: string;
+  descripton: string;
+  slug: string;
 }
+const Home = () => {
+  const [books, setBooks] = useState<BookAttributes[]>([]);
+  console.log(books);
 
-export default Home
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/books")
+      .then((response) => setBooks(response.data))
+      .catch((error) => console.error("Error fetching data:", error));
+  }, []);
+
+  return (
+    <div>
+      {books?.map((book) => {
+        return <div key={book.slug}>{book.title}</div>;
+      })}
+    </div>
+  );
+};
+
+export default Home;
