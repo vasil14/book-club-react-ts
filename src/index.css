@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Input outline focus */
+:focus-visible {
+  outline: #008080 auto 1px;
+}

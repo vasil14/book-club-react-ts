@@ -1,10 +1,8 @@
-import { Link } from 'react-router-dom';
-import { logo } from '../../assets/images';
-import InputComponent from '../../components/form/InputComponent';
+import { Link } from 'react-router-dom'
+import { logo } from '../../assets/images'
+import InputComponent from '../../components/form/InputComponent'
 
 const Login = () => {
-
-  
   return (
     <div className="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900">
       <div>
@@ -14,13 +12,25 @@ const Login = () => {
       </div>
 
       <div className="w-full sm:max-w-md mt-6 px-8 py-10 bg-white dark:bg-gray-800 shadow-md overflow-hidden sm:rounded-lg">
-        <form className=''>
-          <InputComponent name='Email'/>
-          <InputComponent name='Password'/>
+        <form className="">
+          <InputComponent
+            htmlFor="Email"
+            label="Email"
+            type="email"
+            id="Email"
+            placeholder="Email"
+          />
+          <InputComponent
+            htmlFor="Password"
+            label="Password"
+            type="password"
+            id="Password"
+            placeholder="Password"
+          />
         </form>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login
