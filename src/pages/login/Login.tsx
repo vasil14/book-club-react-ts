@@ -1,35 +1,41 @@
-import { Link } from 'react-router-dom'
-import { logo } from '../../assets/images'
+import { useContext, useEffect } from 'react'
+import AuthContext from '../../context/AuthContext'
 import InputComponent from '../../components/form/InputComponent'
+import FormContainer from '../../containers/FormContainer'
 
 const Login = () => {
-  return (
-    <div className="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900">
-      <div>
-        <Link to="/">
-          <img src={logo} alt="book-club-logo" className="h-20 mb-5" />
-        </Link>
-      </div>
+  const { passwordRef, emailRef, handlePasswordState, handleEmailState } =
+    useContext(AuthContext)
 
-      <div className="w-full sm:max-w-md mt-6 px-8 py-10 bg-white dark:bg-gray-800 shadow-md overflow-hidden sm:rounded-lg">
-        <form className="">
-          <InputComponent
-            htmlFor="Email"
-            label="Email"
-            type="email"
-            id="Email"
-            placeholder="Email"
-          />
-          <InputComponent
-            htmlFor="Password"
-            label="Password"
-            type="password"
-            id="Password"
-            placeholder="Password"
-          />
-        </form>
-      </div>
-    </div>
+  return (
+    <FormContainer>
+      <form className="">
+        <InputComponent
+          htmlFor="Email"
+          label="Email"
+          type="email"
+          inputId="Email"
+          placeholder="Email"
+          autoComplete="off"
+          inputRef={emailRef}
+          isRequired={true}
+          onChangeState={handleEmailState}
+        />
+        <InputComponent
+          htmlFor="Password"
+          label="Password"
+          type="password"
+          inputId="Password"
+          placeholder="Password"
+          inputRef={passwordRef}
+          isRequired={true}
+          onChangeState={handlePasswordState}
+        />
+        <button className="border px-5 py-2 bg-teal-600 text-white font-semibold">
+          Register
+        </button>
+      </form>
+    </FormContainer>
   )
 }
 

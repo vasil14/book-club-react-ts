@@ -1,24 +1,26 @@
 interface InputComponentAttributes {
-  id: string
+  inputId: string
   htmlFor: string
   label: string
   type: string
   placeholder: string
   autoComplete?: string
-  required?: boolean
-  state: (e: any) => void
+  isRequired?: boolean
+  onChangeState: (e: any) => void
+  inputRef: any
 }
 
-const InputComponent: React.FC<InputComponentAttributes> = ({
+const InputComponent = ({
   htmlFor,
   label,
   type,
   placeholder,
-  id,
+  inputId,
   autoComplete,
-  required,
-  state
-}) => {
+  isRequired,
+  onChangeState,
+  inputRef,
+}: InputComponentAttributes) => {
   return (
     <div className="flex flex-col gap-2 mb-5">
       <label className="pl-2" htmlFor={htmlFor}>
@@ -27,11 +29,12 @@ const InputComponent: React.FC<InputComponentAttributes> = ({
       <input
         type={type}
         placeholder={placeholder}
-        id={id}
+        id={inputId}
         className="border pl-2 h-10"
         autoComplete={autoComplete}
-        required={required}
-        onChange={(e) => state(e.target.value)}
+        required={isRequired}
+        onChange={(e) => onChangeState(e.target.value)}
+        ref={inputRef}
       />
     </div>
   )
